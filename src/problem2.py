@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and TYLER TOWNSEND.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -30,7 +30,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_problem2a()
+    #run_test_problem2a()
     run_test_problem2b()
 
 
@@ -84,7 +84,7 @@ def problem2a(circle, rectangle, window):
     What goes out:  Nothing (i.e., None).
     Side effects:
       -- Draws the given rg.Circle and rg.Rectangle
-           on the given rg.RoseWindow,
+           on the given rg.RoseWindow, DONE
            then waits for the user to click the window.
       -- Then draws an rg.Line from the upper-right corner
            of the rg.Rectangle to its lower-left corner,
@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +110,30 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render(0.03)
+    window.continue_on_mouse_click()
+
+    start = rg.Point(rectangle._upper_right_corner.x,
+                     rectangle._upper_right_corner.y)
+    end = rg.Point(rectangle._lower_left_corner.x,
+                   rectangle._lower_left_corner.y)
+
+    line = rg.Line(start, end)
+
+    line.attach_to(window)
+    window.render(0.03)
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    window.render(0.03)
+    window.continue_on_mouse_click()
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """
@@ -173,7 +197,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -181,6 +205,24 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
+
+    rect.attach_to(win)
+
+
+    for k in range(n):
+
+        corner1 = rg.Point(rect.get_upper_left_corner().x - (delta*(k)),
+                           rect.get_upper_left_corner().y
+                           - (
+            delta*(k)))
+        corner2 = rg.Point(rect.get_lower_right_corner().x + (delta*(k)),
+                           rect.get_lower_right_corner().y + (delta*(
+            k)))
+
+        rectangle2 = rg.Rectangle(corner1, corner2)
+
+        rectangle2.attach_to(win)
+        win.render(0.03)
 
 
 # ----------------------------------------------------------------------
